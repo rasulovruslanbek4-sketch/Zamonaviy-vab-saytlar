@@ -1,0 +1,10 @@
+FROM nginx:stable-alpine
+
+# Copy the static site into nginx's html folder
+COPY index.html /usr/share/nginx/html/index.html
+
+# Expose HTTP port
+EXPOSE 80
+
+# Run nginx in foreground
+CMD ["nginx", "-g", "daemon off;"]
