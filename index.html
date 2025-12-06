@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSolutions | Zamonaviy vebsaytlar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3a1;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header va Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Sahifa kontenti */
+        .page {
+            padding-top: 100px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .page-content {
+            padding: 30px 0;
+        }
+
+        /* Bosh sahifa */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            border-radius: 0 0 40px 40px;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #3daa8a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        /* Xizmatlar sahifasi */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: scale(1.03);
+        }
+
+        .service-img {
+            height: 200px;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        /* Portfolio sahifasi */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-img {
+            height: 220px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        /* Bog'lanish sahifasi */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(79, 195, 161, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(79, 195, 161, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive dizayn */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .page {
+                padding-top: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Sahifa ko'rinishini boshqarish */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header va Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo" data-page="home">
+                    <i class="fas fa-code"></i> TechSolutions
+                </a>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" class="active" data-page="home">Bosh sahifa</a></li>
+                    <li><a href="#" data-page="services">Xizmatlar</a></li>
+                    <li><a href="#" data-page="portfolio">Portfolio</a></li>
+                    <li><a href="#" data-page="contact">Bog'lanish</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sahifalar kontenti -->
+    <main>
+        <!-- Bosh sahifa -->
+        <section class="page active" id="home-page">
+            <div class="hero">
+                <div class="container">
+                    <h1>Zamonaviy vebsaytlar yaratamiz</h1>
+                    <p>Bizning jamoamiz sizning biznesingiz uchun zamonaviy, tez va moslashuvchan vebsaytlar yaratadi. Har qanday qurilma uchun optimallashtirilgan dizayn.</p>
+                    <a href="#" class="btn" data-page="portfolio">Portfolio ko'rish</a>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="page-content">
+                    <div class="page-header">
+                        <h1>Bizning afzalliklarimiz</h1>
+                        <p>Biz mijozlarimizga eng yaxshi xizmatni taqdim etish uchun zamonaviy texnologiyalar va yondashuvlardan foydalanamiz</p>
+                    </div>
+                    
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>Mobilga moslashuvchan</h3>
+                            <p>Barcha qurilmalarda mukammal ishlaydigan va ko'rinadigan saytlar yaratamiz</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Tez yuklanadi</h3>
+                            <p>Optimallashtirilgan kod tuzilishi saytning tez yuklanishini ta'minlaydi</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Xavfsizlik</h3>
+                            <p>Eng so'ngi xavfsizlik standartlariga muvofiq himoyalangan saytlar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Xizmatlar sahifasi -->
+        <section class="page" id="services-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Bizning xizmatlar</h1>
+                    <p>Biz mijozlarimizga keng ko'lamli veb-ishlab chiqish xizmatlarini taklif etamiz</p>
+                </div>
+                
+                <div class="page-content">
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-img">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Vebsayt yaratish</h3>
+                                <p>Shaxsiy, korporativ yoki onlayn-do'kon saytlari. Har qanday murakkablikdagi loyihalar.</p>
+                                <a href="#" class="btn" style="margin-top: 15px;">Batafsil</a>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-img">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Onlayn do'kon</h3>
+                                <p>Mahsulotlaringizni internet orqali sotish uchun to'liq funksional onlayn-do'kon.</p>
+                                <a href="#" class="btn" style="margin-top: 15px;">Batafsil</a>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-img">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Dizayn xizmatlari</h3>
+                                <p>Zamonaviy va foydalanuvchilar uchun qulay interfeyslar yaratish. Logo va brending.</p>
+                                <a href="#" class="btn" style="margin-top: 15px;">Batafsil</a>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-img">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>SEO optimallashtirish</h3>
+                                <p>Saytingizni Google va boshqa qidiruv tizimlarida yuqori pozitsiyalarga chiqarish.</p>
+                                <a href="#" class="btn" style="margin-top: 15px;">Batafsil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Portfolio sahifasi -->
+        <section class="page" id="portfolio-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Bizning ishlarimiz</h1>
+                    <p>So'ngi yillarda amalga oshirgan muvaffaqiyatli loyihalarimizdan namunalar</p>
+                </div>
+                
+                <div class="page-content">
+                    <div class="portfolio-filter">
+                        <button class="filter-btn active" data-filter="all">Hammasi</button>
+                        <button class="filter-btn" data-filter="web">Vebsaytlar</button>
+                        <button class="filter-btn" data-filter="ecommerce">Onlayn-do'kon</button>
+                        <button class="filter-btn" data-filter="design">Dizayn</button>
+                    </div>
+                    
+                    <div class="portfolio-grid">
+                        <div class="portfolio-item" data-category="web">
+                            <div class="portfolio-img">
+                                <i class="fas fa-business-time"></i>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3>Biznes korporativ sayti</h3>
+                                <p>Yirik kompaniya uchun zamonaviy korporativ vebsayt. Barcha qurilmalar uchun moslashuvchan.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-item" data-category="ecommerce">
+                            <div class="portfolio-img">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3>Kiyim-kechak do'koni</h3>
+                                <p>300+ mahsulot bilan to'liq funksional onlayn-do'kon. To'lov tizimlari integratsiyasi.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-item" data-category="design">
+                            <div class="portfolio-img">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3>Brending va logo dizayn</h3>
+                                <p>Yangi startap uchun to'liq brending paketi: logo, ranglar, vizual identifikatsiya.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-item" data-category="web">
+                            <div class="portfolio-img">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3>Ta'lim platformasi</h3>
+                                <p>Onlayn kurslar va testlar uchun interaktiv platforma. Foydalanuvchi paneli va admin panel.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-item" data-category="ecommerce">
+                            <div class="portfolio-img">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3>Oziq-ovqat yetkazib berish</h3>
+                                <p>Restoran uchun onlayn buyurtma qabul qilish tizimi. GPS kuzatuv va to'lov tizimlari.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-item" data-category="design">
+                            <div class="portfolio-img">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3>Mobil ilova dizayni</h3>
+                                <p>iOS va Android uchun mobil ilova interfeysi dizayni. Foydalanuvchi tajribasini optimallashtirish.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bog'lanish sahifasi -->
+        <section class="page" id="contact-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Biz bilan bog'laning</h1>
+                    <p>Loyihangiz haqida guruhimiz bilan maslahatlashishingiz mumkin. Tez orada siz bilan bog'lanamiz</p>
+                </div>
+                
+                <div class="page-content">
+                    <div class="contact-container">
+                        <div class="contact-info">
+                            <h3>Aloqa ma'lumotlari</h3>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Manzilimiz</h4>
+                                    <p>Toshkent shahri, Yunusobod tumani</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4>Telefon raqam</h4>
+                                    <p>+998 90 123 45 67</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Elektron pochta</h4>
+                                    <p>info@techsolutions.uz</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4>Ish vaqtimiz</h4>
+                                    <p>Dushanba - Juma: 9:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-form">
+                            <h3>Xabar yuborish</h3>
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="name">Ismingiz</label>
+                                    <input type="text" id="name" class="form-control" placeholder="Ismingizni kiriting" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Elektron pochta</label>
+                                    <input type="email" id="email" class="form-control" placeholder="email@example.com" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject">Mavzu</label>
+                                    <input type="text" id="subject" class="form-control" placeholder="Xabar mavzusi" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message">Xabar</label>
+                                    <textarea id="message" class="form-control" placeholder="Xabaringizni kiriting" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn" style="width: 100%;">Xabar yuborish</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TechSolutions</h3>
+                    <p>Biz zamonaviy va samarali veb-ishlab chiqish xizmatlarini taqdim etamiz. Har qanday loyihangizni amalga oshiramiz.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tez havolalar</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="home">Bosh sahifa</a></li>
+                        <li><a href="#" data-page="services">Xizmatlar</a></li>
+                        <li><a href="#" data-page="portfolio">Portfolio</a></li>
+                        <li><a href="#" data-page="contact">Bog'lanish</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Xizmatlarimiz</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Vebsayt yaratish</a></li>
+                        <li><a href="#">Onlayn do'kon</a></li>
+                        <li><a href="#">Dizayn xizmatlari</a></li>
+                        <li><a href="#">SEO optimallashtirish</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Yangiliklar</h3>
+                    <p>Bizning yangiliklar va maxsus takliflar haqida xabardor bo'lish uchun obuna bo'ling.</p>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <input type="email" class="form-control" placeholder="Emailingizni kiriting">
+                        <button class="btn" style="margin-top: 10px; width: 100%;">Obuna bo'lish</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TechSolutions. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menyuni boshqarish
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Sahifalar o'rtasida navigatsiya
+        const pageLinks = document.querySelectorAll('[data-page]');
+        const pages = document.querySelectorAll('.page');
+        
+        pageLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Faol sahifani o'zgartirish
+                const targetPage = link.getAttribute('data-page');
+                
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                document.getElementById(`${targetPage}-page`).classList.add('active');
+                
+                // Faol navigatsiya havolasini o'zgartirish
+                pageLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                link.classList.add('active');
+                
+                // Mobile menyuni yopish
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                // Sahifa boshiga chiqish
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Portfolio filtrlash
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Faol filter tugmasini o'zgartirish
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Portfolio elementlarini filtrlash
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Bog'lanish formasi
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Forma ma'lumotlarini olish
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Oddiy validation
+            if (name && email && subject && message) {
+                // Bu yerda forma ma'lumotlarini serverga yuborish logikasi bo'lishi kerak
+                // Hozircha alert chiqaramiz
+                alert(`Hurmatli ${name}, xabaringiz qabul qilindi. Tez orada siz bilan bog'lanamiz!`);
+                
+                // Formani tozalash
+                contactForm.reset();
+            } else {
+                alert('Iltimos, barcha maydonlarni toʻldiring!');
+            }
+        });
+        
+        // Sayt yuklanganda animatsiya
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
